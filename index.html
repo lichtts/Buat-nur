@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>For You ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Nunito',sans-serif;
+}
+
+body{
+
+height:100vh;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+overflow:hidden;
+
+background:linear-gradient(180deg,#ffeef5,#fff7fb);
+
+}
+
+/* Background */
+
+.bg{
+
+position:fixed;
+
+top:0;
+left:0;
+
+width:100%;
+height:100%;
+
+background:
+
+radial-gradient(circle at 15% 20%,#ffd7e8 0%,transparent 18%),
+
+radial-gradient(circle at 85% 15%,#ffe4f0 0%,transparent 20%),
+
+radial-gradient(circle at 70% 80%,#fff1f7 0%,transparent 22%),
+
+linear-gradient(180deg,#fff6fb,#ffeef6);
+
+z-index:-2;
+
+}
+
+/* dekor */
+
+.cat{
+
+position:absolute;
+
+left:25px;
+bottom:20px;
+
+font-size:90px;
+
+user-select:none;
+
+filter:drop-shadow(0 8px 8px rgba(0,0,0,.12));
+
+}
+
+.anime{
+
+position:absolute;
+
+right:25px;
+bottom:20px;
+
+font-size:90px;
+
+user-select:none;
+
+filter:drop-shadow(0 8px 8px rgba(0,0,0,.12));
+
+}
+
+/* card */
+
+.card{
+
+width:350px;
+
+padding:35px;
+
+border-radius:26px;
+
+background:white;
+
+box-shadow:
+
+0 18px 45px rgba(0,0,0,.12);
+
+text-align:center;
+
+}
+
+.icon{
+
+font-size:42px;
+
+margin-bottom:18px;
+
+}
+
+h2{
+
+font-size:26px;
+
+color:#444;
+
+margin-bottom:28px;
+
+}
+
+.buttons{
+
+position:relative;
+
+height:140px;
+
+}
+
+button{
+
+position:absolute;
+
+border:none;
+
+padding:14px 30px;
+
+border-radius:16px;
+
+font-size:18px;
+
+font-weight:bold;
+
+cursor:pointer;
+
+transition:.25s;
+
+}
+
+button:hover{
+
+transform:scale(1.05);
+
+}
+
+#yes{
+
+background:#ff7fa8;
+
+color:white;
+
+left:20px;
+
+top:45px;
+
+}
+
+#no{
+
+background:#fff1d9;
+
+color:#555;
+
+right:20px;
+
+top:45px;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="bg"></div>
+
+<div class="cat">🐱</div>
+
+<div class="anime">🌸</div>
+
+<div class="card">
+
+<div class="icon">🐾</div>
+
+<h2>Apakah kamu lagi sibuk?</h2>
+
+<div class="buttons">
+
+<button id="yes">Iya</button>
+
+<button id="no">Tidak</button>
+
+</div>
+
+</div>
+
+<script>const yes=document.getElementById("yes");
+const no=document.getElementById("no");
+const area=document.querySelector(".buttons");
+
+function moveYes(){
+
+const maxX=area.clientWidth-yes.offsetWidth;
+const maxY=area.clientHeight-yes.offsetHeight;
+
+let x,y;
+
+do{
+
+x=Math.random()*maxX;
+y=Math.random()*maxY;
+
+}while(
+
+Math.abs(x-no.offsetLeft)<110 &&
+Math.abs(y-no.offsetTop)<70
+
+);
+
+yes.style.left=x+"px";
+yes.style.top=y+"px";
+
+}
+
+yes.addEventListener("mouseenter",moveYes);
+
+yes.addEventListener("touchstart",function(e){
+
+e.preventDefault();
+moveYes();
+
+});
+
+yes.addEventListener("click",moveYes);
+
+no.addEventListener("click",function(){
+
+document.querySelector(".card").innerHTML=`
+
+<div style="font-size:60px;">🥰</div>
+
+<h2 style="margin-top:20px;">
+Yeayy! Terima kasih ❤️
+</h2>
+
+<p style="margin-top:15px;color:#666;">
+Semoga harimu menyenangkan ✨
+</p>
+
+`;
+
+});
+
+</script>
+
+</body>
+</html>
