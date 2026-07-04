@@ -1,0 +1,349 @@
+/* ===============================
+   TOKENS
+================================== */
+:root{
+    --cream:#FFF6EE;
+    --blush:#FFE1E9;
+    --pink:#FF9EB5;
+    --pink-deep:#FF7095;
+    --tan:#E9C9A6;
+    --brown:#5B4436;
+    --brown-soft:#8A6F5E;
+    --red:#FF6B6B;
+    --shadow:rgba(139,94,60,.18);
+}
+
+/* ===============================
+   GLOBAL
+================================== */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Quicksand","Poppins",Arial,sans-serif;
+}
+
+html{ scroll-behavior:smooth; }
+
+body{
+    width:100%;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+    background:var(--cream);
+    position:relative;
+}
+
+/* ===============================
+   BACKGROUND
+================================== */
+.background{
+    position:fixed;
+    inset:0;
+    overflow:hidden;
+    background:
+        radial-gradient(circle at 15% 10%, rgba(255,255,255,.9), transparent 45%),
+        radial-gradient(circle at 85% 90%, rgba(255,193,209,.55), transparent 45%),
+        linear-gradient(135deg, #fff6ee, #ffe9ee, #ffdce6);
+}
+
+.blob{
+    position:absolute;
+    border-radius:50%;
+    filter:blur(70px);
+    opacity:.6;
+}
+.blob1{
+    width:420px; height:420px;
+    left:-120px; top:-120px;
+    background:rgba(255,225,233,.9);
+    animation:float1 9s ease-in-out infinite;
+}
+.blob2{
+    width:380px; height:380px;
+    right:-100px; bottom:-100px;
+    background:rgba(233,201,166,.55);
+    animation:float2 11s ease-in-out infinite;
+}
+
+/* floating paw prints */
+.background span{
+    position:absolute;
+    font-size:20px;
+    opacity:.35;
+    animation:leaf 16s linear infinite;
+    filter:drop-shadow(0 2px 2px rgba(139,94,60,.15));
+}
+
+/* ===============================
+   CARD
+================================== */
+.card{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,calc(-50% + 25px));
+    width:92%;
+    max-width:470px;
+    padding:46px 38px 38px;
+    border-radius:32px;
+    background:rgba(255,255,255,.55);
+    backdrop-filter:blur(18px);
+    border:1px solid rgba(255,255,255,.6);
+    box-shadow:0 25px 55px var(--shadow), 0 0 0 1px rgba(255,255,255,.4) inset;
+    transition:opacity .45s, transform .45s;
+    opacity:0;
+    pointer-events:none;
+    overflow:hidden; /* keep escaping buttons confined to the card */
+}
+
+.page.active{
+    opacity:1;
+    pointer-events:auto;
+    transform:translate(-50%,-50%);
+}
+
+/* kuping kucing di atas card */
+.ear{
+    position:absolute;
+    top:-26px;
+    width:60px;
+    height:60px;
+    background:linear-gradient(160deg,#ffffff,var(--blush));
+    border:1px solid rgba(255,255,255,.7);
+    border-radius:50% 50% 0 0;
+    box-shadow:0 10px 20px var(--shadow);
+}
+.ear::after{
+    content:"";
+    position:absolute;
+    inset:12px 12px 0 12px;
+    background:var(--pink);
+    border-radius:50% 50% 0 0;
+    opacity:.55;
+}
+.ear-left{ left:36px; transform:rotate(-18deg); }
+.ear-right{ right:36px; transform:rotate(18deg); }
+
+.paw{
+    display:block;
+    text-align:center;
+    font-size:26px;
+    margin-bottom:6px;
+    filter:drop-shadow(0 2px 3px var(--shadow));
+}
+
+h1{
+    font-family:"Baloo 2","Poppins",sans-serif;
+    font-size:27px;
+    font-weight:700;
+    line-height:1.45;
+    color:var(--brown);
+    margin-bottom:30px;
+    text-align:center;
+}
+
+p{
+    color:var(--brown-soft);
+    text-align:center;
+    line-height:1.7;
+}
+
+/* ===============================
+   BUTTON
+================================== */
+.btn{
+    border:2px dashed rgba(255,255,255,.8);
+    outline:none;
+    cursor:pointer;
+    padding:15px 30px;
+    border-radius:50px;
+    font-family:"Baloo 2","Poppins",sans-serif;
+    font-size:17px;
+    font-weight:700;
+    letter-spacing:.2px;
+    color:white;
+    transition:left .28s ease, top .28s ease, transform .15s ease;
+    box-shadow:0 10px 22px var(--shadow);
+    white-space:nowrap;
+}
+
+.btn:hover{ transform:translateY(-3px); }
+.btn:active{ transform:scale(.97); }
+.btn:disabled{
+    opacity:.55;
+    cursor:default;
+    transform:none;
+    filter:grayscale(.3);
+}
+
+.btn-yes{ background:linear-gradient(135deg,#7fd9a6,#52b788); }
+.btn-no{ background:linear-gradient(135deg,#ff97ab,var(--red)); }
+
+/* textarea */
+textarea{
+    width:100%;
+    height:160px;
+    resize:none;
+    padding:18px;
+    border-radius:20px;
+    border:2px dashed rgba(255,150,175,.5);
+    outline:none;
+    font-size:15px;
+    font-family:"Quicksand",sans-serif;
+    background:rgba(255,255,255,.7);
+    color:var(--brown);
+    margin-bottom:24px;
+}
+textarea::placeholder{ color:#b79c8b; }
+
+/* ===============================
+   BUTTON ROWS
+================================== */
+.buttons{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:16px;
+    flex-wrap:wrap;
+    width:100%;
+}
+.buttons2{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:16px;
+    flex-wrap:wrap;
+    width:100%;
+}
+
+/* reaction popup */
+.reaction{
+    position:absolute;
+    left:50%;
+    top:50%;
+    width:78%;
+    transform:translate(-50%,-50%) scale(.85);
+    background:rgba(255,255,255,.97);
+    padding:24px 22px;
+    border-radius:22px;
+    box-shadow:0 18px 40px var(--shadow);
+    font-family:"Baloo 2",sans-serif;
+    font-weight:700;
+    font-size:16px;
+    color:var(--pink-deep);
+    opacity:0;
+    pointer-events:none;
+    transition:.3s;
+    z-index:30;
+}
+.reaction.show{
+    opacity:1;
+    transform:translate(-50%,-50%) scale(1);
+}
+
+/* ===============================
+   SPIN WHEEL
+================================== */
+#wheel{
+    width:260px;
+    height:260px;
+    margin:16px auto 24px;
+    border-radius:50%;
+    border:10px solid white;
+    background:conic-gradient(
+        #FFD3E0 0deg 36deg,
+        #FFEFD6 36deg 72deg,
+        #E9C9A6 72deg 108deg,
+        #FFB4C6 108deg 144deg,
+        #F6D9EC 144deg 180deg,
+        #FFD3E0 180deg 216deg,
+        #FFEFD6 216deg 252deg,
+        #E9C9A6 252deg 288deg,
+        #FFB4C6 288deg 324deg,
+        #F6D9EC 324deg 360deg
+    );
+    box-shadow:0 20px 40px var(--shadow);
+    transition:transform 4s cubic-bezier(.15,.8,.15,1);
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:34px;
+}
+
+#wheel::before{
+    content:"";
+    position:absolute;
+    top:-24px;
+    left:50%;
+    transform:translateX(-50%);
+    border-left:14px solid transparent;
+    border-right:14px solid transparent;
+    border-top:26px solid var(--pink-deep);
+    filter:drop-shadow(0 2px 2px var(--shadow));
+}
+
+.wheel-num{
+    position:absolute;
+    top:50%;
+    left:50%;
+    width:26px;
+    height:26px;
+    margin:-13px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:"Baloo 2",sans-serif;
+    font-weight:700;
+    font-size:15px;
+    color:var(--brown);
+    text-shadow:0 1px 2px rgba(255,255,255,.85);
+    pointer-events:none;
+}
+
+#spinBtn{ display:block; margin:auto; background:linear-gradient(135deg,#7fb8ff,#4f8ef5); }
+
+#result{
+    margin-top:22px;
+    text-align:center;
+    font-family:"Baloo 2",sans-serif;
+    font-size:22px;
+    font-weight:700;
+    color:var(--brown);
+    min-height:40px;
+}
+
+/* ===============================
+   ANIMATIONS
+================================== */
+@keyframes float1{ 0%,100%{transform:translateY(0);} 50%{transform:translateY(25px);} }
+@keyframes float2{ 0%,100%{transform:translateY(0);} 50%{transform:translateY(-25px);} }
+
+@keyframes leaf{
+    0%{ transform:translateY(-60px) rotate(0deg); opacity:0; }
+    15%{ opacity:.4; }
+    50%{ transform:translateY(50vh) rotate(180deg); }
+    100%{ transform:translateY(110vh) rotate(360deg); opacity:0; }
+}
+
+@keyframes pop{
+    0%{ transform:scale(.7); opacity:0; }
+    60%{ transform:scale(1.08); opacity:1; }
+    100%{ transform:scale(1); }
+}
+
+/* ===============================
+   RESPONSIVE
+================================== */
+@media(max-width:600px){
+    .card{ padding:40px 24px 28px; width:94%; }
+    h1{ font-size:22px; }
+    .btn{ font-size:15px; padding:13px 20px; }
+    #wheel{ width:220px; height:220px; }
+    textarea{ height:145px; }
+    .ear{ width:48px; height:48px; top:-20px; }
+  }
+  
