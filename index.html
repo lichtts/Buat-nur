@@ -1,35 +1,234 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>For Nur ❤️</title>
+<title>Apakah Kamu Sibuk?</title>
 
-<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Press Start 2P',cursive;
+}
+
+body{
+
+overflow:hidden;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(#69b8ff,#bfe9ff);
+
+}
+
+.clouds{
+
+position:absolute;
+width:200%;
+height:100%;
+left:0;
+top:0;
+
+background-image:
+
+radial-gradient(circle at 10% 20%,white 0 30px,transparent 31px),
+radial-gradient(circle at 15% 20%,white 0 25px,transparent 26px),
+radial-gradient(circle at 20% 20%,white 0 30px,transparent 31px),
+
+radial-gradient(circle at 45% 40%,white 0 35px,transparent 36px),
+radial-gradient(circle at 50% 40%,white 0 28px,transparent 29px),
+radial-gradient(circle at 55% 40%,white 0 35px,transparent 36px),
+
+radial-gradient(circle at 75% 18%,white 0 32px,transparent 33px),
+radial-gradient(circle at 80% 18%,white 0 25px,transparent 26px),
+radial-gradient(circle at 85% 18%,white 0 32px,transparent 33px);
+
+animation:cloud 50s linear infinite;
+
+opacity:.9;
+
+}
+
+@keyframes cloud{
+
+from{
+
+transform:translateX(0);
+
+}
+
+to{
+
+transform:translateX(-50%);
+
+}
+
+}
+
+.card{
+
+position:relative;
+
+width:90%;
+max-width:420px;
+
+padding:35px;
+
+background:white;
+
+border:6px solid #000;
+
+box-shadow:8px 8px #000;
+
+text-align:center;
+
+z-index:10;
+
+}
+
+.title{
+
+font-size:18px;
+
+line-height:1.8;
+
+}
+
+.buttons{
+
+margin-top:45px;
+
+height:180px;
+
+position:relative;
+
+}
+
+button{
+
+position:absolute;
+
+padding:15px 28px;
+
+font-size:11px;
+
+cursor:pointer;
+
+border:none;
+
+border:4px solid #000;
+
+box-shadow:5px 5px #000;
+
+transition:.2s;
+
+}
+
+button:hover{
+
+transform:scale(1.05);
+
+}
+
+#yes{
+
+background:#ff7b7b;
+
+left:20px;
+
+top:80px;
+
+}
+
+#no{
+
+background:#66d36e;
+
+right:20px;
+
+top:80px;
+
+}
+
+#page2{
+
+display:none;
+
+position:absolute;
+
+inset:0;
+
+background:linear-gradient(#69b8ff,#bfe9ff);
+
+justify-content:center;
+
+align-items:center;
+
+flex-direction:column;
+
+font-size:25px;
+
+animation:fade .7s;
+
+}
+
+@keyframes fade{
+
+from{
+
+opacity:0;
+
+}
+
+to{
+
+opacity:1;
+
+}
+
+}
+
+.character{
+
+position:absolute;
+
+right:15px;
+
+bottom:15px;
+
+font-size:80px;
+
+z-index:5;
+
+user-select:none;
+
+}
+
+</style>
 </head>
 
 <body>
 
-<div class="background">
+<div class="clouds"></div>
 
-<div class="cloud cloud1"></div>
-<div class="cloud cloud2"></div>
+<div class="character">🧸</div>
 
-<div class="stars"></div>
+<div class="card" id="page1">
+
+<div class="title">
+
+Apakah kamu<br>lagi sibuk?
 
 </div>
 
-<div class="container">
-
-<div class="question-box">
-
-<h1>Apakah kamu lagi sibuk?</h1>
-
-<div class="button-area">
+<div class="buttons">
 
 <button id="yes">Iya</button>
 
@@ -39,18 +238,111 @@
 
 </div>
 
-<div class="characters">
+<div id="page2">
 
-<img src="https://i.imgur.com/2DhmtJ4.png" class="girl">
+<div>😊</div>
 
-<img src="https://i.imgur.com/IU9P4sQ.png" class="boy">
+<br>
+
+<div>Makasih</div>
 
 </div>
 
-</div>
+<script>
+  const yes=document.getElementById("yes");
+const no=document.getElementById("no");
+const page1=document.getElementById("page1");
+const page2=document.getElementById("page2");
+const area=document.querySelector(".buttons");
 
-<script src="script.js"></script>
+function moveButton(){
+
+const maxX=area.clientWidth-yes.offsetWidth;
+const maxY=area.clientHeight-yes.offsetHeight;
+
+let x,y;
+
+do{
+
+x=Math.random()*maxX;
+y=Math.random()*maxY;
+
+}while(
+
+Math.abs(x-no.offsetLeft)<130 &&
+Math.abs(y-no.offsetTop)<80
+
+);
+
+yes.style.left=x+"px";
+yes.style.top=y+"px";
+
+}
+
+yes.addEventListener("mouseenter",moveButton);
+
+yes.addEventListener("touchstart",function(e){
+
+e.preventDefault();
+moveButton();
+
+});
+
+yes.addEventListener("click",moveButton);
+
+no.onclick=function(){
+
+page1.style.animation="fade .5s forwards";
+
+setTimeout(function(){
+
+page1.style.display="none";
+page2.style.display="flex";
+
+},500);
+
+}
+
+let stars=[];
+
+for(let i=0;i<35;i++){
+
+let s=document.createElement("div");
+
+s.style.position="absolute";
+s.style.width="4px";
+s.style.height="4px";
+s.style.background="white";
+s.style.left=Math.random()*100+"%";
+s.style.top=Math.random()*100+"%";
+s.style.opacity=Math.random();
+s.style.animation="twinkle "+(2+Math.random()*3)+"s infinite";
+
+document.body.appendChild(s);
+
+stars.push(s);
+
+}
+
+const style=document.createElement("style");
+
+style.innerHTML=`
+
+@keyframes twinkle{
+
+0%{opacity:.2;}
+
+50%{opacity:1;}
+
+100%{opacity:.2;}
+
+}
+
+`;
+
+document.head.appendChild(style);
+
+</script>
 
 </body>
-
 </html>
