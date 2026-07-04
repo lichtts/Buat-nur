@@ -1,0 +1,589 @@
+/* ===============================
+   GLOBAL
+================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:
+    "Poppins",
+    Arial,
+    sans-serif;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+
+    width:100%;
+    min-height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    overflow:hidden;
+
+    background:#dfeef1;
+
+    position:relative;
+
+}
+
+
+/* ===============================
+   BACKGROUND
+================================== */
+
+.background{
+
+    position:fixed;
+
+    inset:0;
+
+    overflow:hidden;
+
+    background:
+
+    radial-gradient(circle at top left,
+    rgba(255,255,255,.9),
+    transparent 45%),
+
+
+    radial-gradient(circle at bottom right,
+    rgba(185,214,220,.45),
+    transparent 40%),
+
+
+    linear-gradient(
+    135deg,
+
+    #eef8fa,
+
+    #d9e9ee,
+
+    #d7e4e9
+
+    );
+
+}
+
+
+/* blur */
+
+.background::before{
+
+content:"";
+
+position:absolute;
+
+width:500px;
+height:500px;
+
+left:-140px;
+top:-140px;
+
+border-radius:50%;
+
+background:rgba(255,255,255,.5);
+
+filter:blur(90px);
+
+animation:float1 8s ease-in-out infinite;
+
+}
+
+
+.background::after{
+
+content:"";
+
+position:absolute;
+
+width:420px;
+height:420px;
+
+right:-100px;
+bottom:-100px;
+
+border-radius:50%;
+
+background:rgba(170,205,215,.35);
+
+filter:blur(90px);
+
+animation:float2 10s ease-in-out infinite;
+
+}
+
+
+
+/* daun kecil */
+
+.background span{
+
+position:absolute;
+
+width:18px;
+height:18px;
+
+border-radius:100% 0;
+
+background:rgba(255,255,255,.28);
+
+filter:blur(.3px);
+
+animation:leaf 18s linear infinite;
+
+}
+
+
+/* ===============================
+   CARD
+================================== */
+
+.card{
+
+position:absolute;
+
+width:92%;
+max-width:470px;
+
+padding:42px;
+
+border-radius:30px;
+
+background:rgba(255,255,255,.24);
+
+backdrop-filter:blur(18px);
+
+border:1px solid rgba(255,255,255,.45);
+
+box-shadow:
+
+0 25px 60px rgba(0,0,0,.12),
+
+0 0 0 1px rgba(255,255,255,.12);
+
+transition:.45s;
+
+opacity:0;
+
+pointer-events:none;
+
+transform:translateY(25px);
+
+}
+
+.page.active{
+
+opacity:1;
+
+pointer-events:auto;
+
+transform:translateY(0);
+
+}
+
+
+h1{
+
+font-size:30px;
+
+font-weight:700;
+
+line-height:1.4;
+
+color:#27424d;
+
+margin-bottom:35px;
+
+text-align:center;
+
+}
+
+p{
+
+color:#4f6670;
+
+text-align:center;
+
+line-height:1.7;
+
+}
+
+
+/* ===============================
+   BUTTON
+================================== */
+
+button{
+
+border:none;
+
+outline:none;
+
+cursor:pointer;
+
+padding:15px 36px;
+
+border-radius:14px;
+
+font-size:18px;
+
+font-weight:600;
+
+transition:.28s;
+
+}
+
+button:hover{
+
+transform:translateY(-3px);
+
+box-shadow:
+
+0 10px 25px rgba(0,0,0,.15);
+
+}
+
+button:active{
+
+transform:scale(.97);
+
+}
+
+
+#yesBtn{
+
+background:#52b788;
+
+color:white;
+
+}
+
+#noBtn{
+
+position:absolute;
+
+background:#ef4444;
+
+color:white;
+
+left:230px;
+
+top:0;
+
+}
+
+
+/* halaman 2 */
+
+textarea{
+
+width:100%;
+
+height:170px;
+
+resize:none;
+
+padding:18px;
+
+border-radius:18px;
+
+border:none;
+
+outline:none;
+
+font-size:16px;
+
+background:rgba(255,255,255,.75);
+
+color:#333;
+
+margin-bottom:25px;
+
+  }
+/* ===============================
+   BUTTONS
+================================== */
+
+.buttons{
+    position:relative;
+    width:100%;
+    height:70px;
+}
+
+.buttons2{
+    position:relative;
+    width:100%;
+    height:80px;
+    margin-top:5px;
+}
+
+#nextBtn{
+
+    background:#4CAF50;
+    color:white;
+
+    position:absolute;
+    left:0;
+    top:0;
+
+}
+
+#kepoBtn{
+
+    background:#ff5f7a;
+    color:white;
+
+    position:absolute;
+    right:0;
+    top:0;
+
+}
+
+
+/* ===============================
+   SPIN WHEEL
+================================== */
+
+#wheel{
+
+    width:260px;
+    height:260px;
+
+    margin:20px auto;
+
+    border-radius:50%;
+
+    border:10px solid white;
+
+    background:
+    conic-gradient(
+
+    #7dd3fc 0deg 36deg,
+
+    #a7f3d0 36deg 72deg,
+
+    #fde68a 72deg 108deg,
+
+    #fca5a5 108deg 144deg,
+
+    #c4b5fd 144deg 180deg,
+
+    #7dd3fc 180deg 216deg,
+
+    #a7f3d0 216deg 252deg,
+
+    #fde68a 252deg 288deg,
+
+    #fca5a5 288deg 324deg,
+
+    #c4b5fd 324deg 360deg
+
+    );
+
+    box-shadow:
+
+    0 20px 40px rgba(0,0,0,.15);
+
+    transition:
+    transform 4s cubic-bezier(.15,.8,.15,1);
+
+}
+
+#spinBtn{
+
+    display:block;
+
+    margin:auto;
+
+    background:#2563eb;
+
+    color:white;
+
+}
+
+#result{
+
+    margin-top:25px;
+
+    text-align:center;
+
+    font-size:23px;
+
+    font-weight:bold;
+
+    color:#234;
+
+    min-height:40px;
+
+}
+
+
+/* ===============================
+   POINTER
+================================== */
+
+#wheel::before{
+
+content:"";
+
+position:absolute;
+
+left:50%;
+
+transform:translateX(-50%);
+
+margin-top:-18px;
+
+border-left:16px solid transparent;
+
+border-right:16px solid transparent;
+
+border-top:30px solid #ef4444;
+
+}
+
+
+/* ===============================
+   ANIMATION
+================================== */
+
+@keyframes float1{
+
+0%{
+
+transform:translateY(0);
+
+}
+
+50%{
+
+transform:translateY(25px);
+
+}
+
+100%{
+
+transform:translateY(0);
+
+}
+
+}
+
+@keyframes float2{
+
+0%{
+
+transform:translateY(0);
+
+}
+
+50%{
+
+transform:translateY(-25px);
+
+}
+
+100%{
+
+transform:translateY(0);
+
+}
+
+}
+
+@keyframes leaf{
+
+0%{
+
+transform:
+
+translateY(-80px)
+
+rotate(0deg);
+
+opacity:0;
+
+}
+
+15%{
+
+opacity:.6;
+
+}
+
+50%{
+
+transform:
+
+translateY(50vh)
+
+rotate(180deg);
+
+}
+
+100%{
+
+transform:
+
+translateY(110vh)
+
+rotate(360deg);
+
+opacity:0;
+
+}
+
+}
+
+
+/* ===============================
+   RESPONSIVE
+================================== */
+
+@media(max-width:600px){
+
+.card{
+
+padding:28px;
+
+width:94%;
+
+}
+
+h1{
+
+font-size:24px;
+
+}
+
+button{
+
+width:120px;
+
+font-size:16px;
+
+padding:14px 20px;
+
+}
+
+#wheel{
+
+width:220px;
+height:220px;
+
+}
+
+textarea{
+
+height:150px;
+
+}
+
+}
