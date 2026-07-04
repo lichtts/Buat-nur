@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Apakah Kamu Lagi Sibuk?</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#87CEEB;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+overflow:hidden;
+}
+
+.box{
+background:white;
+padding:30px;
+border-radius:15px;
+width:320px;
+text-align:center;
+box-shadow:0 0 20px rgba(0,0,0,.2);
+}
+
+h2{
+margin-bottom:30px;
+}
+
+.buttons{
+position:relative;
+height:120px;
+}
+
+button{
+padding:12px 25px;
+border:none;
+border-radius:8px;
+font-size:16px;
+cursor:pointer;
+position:absolute;
+}
+
+#yes{
+background:#ff6666;
+color:white;
+left:30px;
+top:40px;
+}
+
+#no{
+background:#4CAF50;
+color:white;
+right:30px;
+top:40px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+
+<h2>Apakah kamu lagi sibuk?</h2>
+
+<div class="buttons">
+
+<button id="yes">Iya</button>
+
+<button id="no">Tidak</button>
+
+</div>
+
+</div>
+
+<script>
+
+const yes=document.getElementById("yes");
+const no=document.getElementById("no");
+const area=document.querySelector(".buttons");
+
+function pindah(){
+
+const maxX=area.clientWidth-yes.offsetWidth;
+const maxY=area.clientHeight-yes.offsetHeight;
+
+let x,y;
+
+do{
+
+x=Math.random()*maxX;
+y=Math.random()*maxY;
+
+}while(
+
+Math.abs(x-no.offsetLeft)<100 &&
+Math.abs(y-no.offsetTop)<60
+
+);
+
+yes.style.left=x+"px";
+yes.style.top=y+"px";
+
+}
+
+yes.addEventListener("mouseenter",pindah);
+yes.addEventListener("touchstart",function(e){
+e.preventDefault();
+pindah();
+});
+
+no.onclick=function(){
+alert("Makasih 😊");
+};
+
+</script>
+
+</body>
+</html>
