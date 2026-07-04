@@ -1,193 +1,35 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For Nur</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+<title>For Nur ❤️</title>
 
-<style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Poppins',sans-serif;
-}
-
-body{
-
-height:100vh;
-overflow:hidden;
-
-display:flex;
-justify-content:center;
-align-items:center;
-
-background:
-radial-gradient(circle at top,#6f6bff 0%,#25284d 40%,#111827 100%);
-
-}
-
-/* Bintang */
-
-.star{
-
-position:absolute;
-width:3px;
-height:3px;
-background:white;
-border-radius:50%;
-animation:blink 2s infinite;
-
-}
-
-@keyframes blink{
-
-0%,100%{
-opacity:.2;
-}
-
-50%{
-opacity:1;
-}
-
-}
-
-.card{
-
-position:relative;
-
-width:350px;
-
-padding:35px;
-
-border-radius:25px;
-
-background:rgba(255,255,255,.08);
-
-backdrop-filter:blur(18px);
-
-border:1px solid rgba(255,255,255,.15);
-
-text-align:center;
-
-box-shadow:0 15px 40px rgba(0,0,0,.45);
-
-color:white;
-
-animation:show .8s;
-
-}
-
-@keyframes show{
-
-from{
-
-opacity:0;
-transform:translateY(30px);
-
-}
-
-to{
-
-opacity:1;
-transform:translateY(0);
-
-}
-
-}
-
-.anime{
-
-font-size:65px;
-
-margin-bottom:10px;
-
-}
-
-h1{
-
-font-size:28px;
-
-margin-bottom:40px;
-
-}
-
-.area{
-
-position:relative;
-
-height:170px;
-
-}
-
-button{
-
-position:absolute;
-
-width:120px;
-
-height:55px;
-
-border:none;
-
-border-radius:15px;
-
-font-size:18px;
-
-font-weight:bold;
-
-cursor:pointer;
-
-transition:.25s;
-
-}
-
-#yes{
-
-background:#ff6b9f;
-
-color:white;
-
-left:20px;
-
-top:60px;
-
-}
-
-#no{
-
-background:white;
-
-color:#333;
-
-right:20px;
-
-top:60px;
-
-}
-
-button:hover{
-
-transform:scale(1.06);
-
-}
-
-</style>
+<link rel="stylesheet" href="style.css">
 
 </head>
 
 <body>
 
-<div class="card">
+<div class="background">
 
-<div class="anime">🌸</div>
+<div class="cloud cloud1"></div>
+<div class="cloud cloud2"></div>
+
+<div class="stars"></div>
+
+</div>
+
+<div class="container">
+
+<div class="question-box">
 
 <h1>Apakah kamu lagi sibuk?</h1>
 
-<div class="area">
+<div class="button-area">
 
 <button id="yes">Iya</button>
 
@@ -197,48 +39,18 @@ transform:scale(1.06);
 
 </div>
 
-<script>
+<div class="characters">
 
-for(let i=0;i<80;i++){
+<img src="https://i.imgur.com/2DhmtJ4.png" class="girl">
 
-let s=document.createElement("div");
+<img src="https://i.imgur.com/IU9P4sQ.png" class="boy">
 
-s.className="star";
+</div>
 
-s.style.left=Math.random()*100+"vw";
+</div>
 
-s.style.top=Math.random()*100+"vh";
-
-s.style.animationDelay=Math.random()*2+"s";
-
-document.body.appendChild(s);
-
-}
-
-const yes=document.getElementById("yes");
-const area=document.querySelector(".area");
-
-function kabur(){
-
-const x=Math.random()*(area.clientWidth-120);
-const y=Math.random()*(area.clientHeight-55);
-
-yes.style.left=x+"px";
-yes.style.top=y+"px";
-
-}
-
-yes.addEventListener("mouseenter",kabur);
-yes.addEventListener("touchstart",kabur);
-yes.addEventListener("click",kabur);
-
-document.getElementById("no").onclick=function(){
-
-window.location.href="page2.html";
-
-}
-
-</script>
+<script src="script.js"></script>
 
 </body>
+
 </html>
